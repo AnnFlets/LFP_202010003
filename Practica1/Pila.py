@@ -17,5 +17,8 @@ class Pila:
     def eliminarPelicula(self, posicion):
         self.peliculas.pop(posicion)
 
+    def devolverPelicula(self, posicion):
+        return self.peliculas[posicion]
+
     def tamanio(self):
         return len(self.peliculas)
