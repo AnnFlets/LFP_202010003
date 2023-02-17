@@ -1,6 +1,8 @@
-#Se importan la clase Pila y Película
+#Se importan la clase Pila, Película y Utilidades
 from Pila import Pila
 from Pelicula import Pelicula
+from Utilidades import Utilidades
+
 
 print("""
 Curso: Lenguajes Formales y de Programación
@@ -11,6 +13,7 @@ Carné: 202010003
 input("Pulse enter para continuar...")
 
 miPila = Pila()
+utilidad = Utilidades()
 menuPrincipal = True
 
 while(menuPrincipal):
@@ -97,7 +100,68 @@ while(menuPrincipal):
                 except:
                     print("[Error]: Opción inválida")
         elif opcionMenuPrincipal == 3:
-            print("\n--- Filtrado ---")
+            while (menuSecundario):
+                try:
+                    print("\n--- Filtrado ---")
+                    if miPila.tamanio() != 0:
+                        print("1 - Filtrado por actor"
+                              "\n2 - Filtrado por año"
+                              "\n3 - Filtrado por género"
+                              "\n4 - Salir")
+                        opcionMenuSecundario = int(input("Ingrese la opción a ejecutar:"))
+                        if opcionMenuSecundario == 1:
+                            print("\n___ Filtrado por actor ___")
+                            actorFiltro = input("Ingrese el actor a buscar:")
+                            if utilidad.comprobarEntero(actorFiltro) or utilidad.comprobarDecimal(actorFiltro):
+                                print("No debe ingresar valores numéricos")
+                            else:
+                                print("\nActor:", actorFiltro)
+                                print("Resultado:")
+                                contador = 0
+                                for pelicula in miPila.retornarPeliculas():
+                                    for actor in pelicula.obtenerActores():
+                                        if actorFiltro.lower() == actor.lower():
+                                            print("\t*", pelicula.obtenerNombre())
+                                            contador = contador + 1
+                                if contador == 0:
+                                    print("No hay películas")
+                        elif opcionMenuSecundario == 2:
+                            print("\n___ Filtrado por año ___")
+                            anioFiltro = int(input("Ingrese el año a buscar:"))
+                            print("\nAño:", anioFiltro)
+                            print("Resultado:")
+                            contador = 0
+                            for pelicula in miPila.retornarPeliculas():
+                                if anioFiltro == int(pelicula.obtenerAnio()):
+                                    print("\t*", pelicula.obtenerNombre(), "-", pelicula.obtenerGenero())
+                                    contador = contador + 1
+                            if contador == 0:
+                                print("No hay películas")
+                        elif opcionMenuSecundario == 3:
+                            print("\n___ Filtrado por género ___")
+                            generoFiltro = input("Ingrese el género a buscar:")
+                            if utilidad.comprobarEntero(generoFiltro) or utilidad.comprobarDecimal(generoFiltro):
+                                print("No debe ingresar valores numéricos")
+                            else:
+                                print("\nGénero:", generoFiltro)
+                                print("Resultado:")
+                                contador = 0
+                                for pelicula in miPila.retornarPeliculas():
+                                    if generoFiltro.lower() == pelicula.obtenerGenero().lower():
+                                        print("\t*", pelicula.obtenerNombre())
+                                        contador = contador + 1
+                                if contador == 0:
+                                    print("No hay películas")
+                        elif opcionMenuSecundario == 4:
+                            print("--- Regresando al menú principal")
+                            menuSecundario = False
+                        else:
+                            print("No ingresó una opción existente")
+                    else:
+                        print("No hay películas cargadas")
+                        menuSecundario = False
+                except:
+                    print("[Error]: Opción inválida")
         elif opcionMenuPrincipal == 4:
             print("\n--- Gráfica ---")
         elif opcionMenuPrincipal == 5:
