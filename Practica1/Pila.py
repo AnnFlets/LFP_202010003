@@ -2,14 +2,8 @@ class Pila:
     def __init__(self):
         self.peliculas = []
 
-    def estaVacia(self):
-        return self.peliculas == []
-
     def push(self, pelicula):
         self.peliculas.append(pelicula)
-
-    def pop(self):
-        return self.peliculas.pop()
 
     def retornarPeliculas(self):
         return self.peliculas
@@ -20,5 +14,21 @@ class Pila:
     def devolverPelicula(self, posicion):
         return self.peliculas[posicion]
 
+    def devolverActoresPeliculas(self):
+        actores = []
+        for pelicula in self.peliculas:
+            for actor in pelicula.obtenerActores():
+                if len(actores) != 0:
+                    contador = 0
+                    actorVerificar = actor
+                    for actorPeli in actores:
+                        if actorVerificar == actorPeli:
+                            contador = contador + 1
+                    if contador == 0:
+                        actores.append(actor)
+                else:
+                    actores.append(actor)
+        return actores
     def tamanio(self):
         return len(self.peliculas)
+    

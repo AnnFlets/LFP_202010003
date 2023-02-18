@@ -3,6 +3,9 @@ from Pila import Pila
 from Pelicula import Pelicula
 from Utilidades import Utilidades
 
+#Se importa Graphviz
+import graphviz
+
 
 print("""
 Curso: Lenguajes Formales y de Programación
@@ -164,6 +167,43 @@ while(menuPrincipal):
                     print("[Error]: Opción inválida")
         elif opcionMenuPrincipal == 4:
             print("\n--- Gráfica ---")
+            if miPila.tamanio() != 0:
+                grafico = graphviz.Digraph(format="png")
+                actoresGrafica = miPila.devolverActoresPeliculas()
+                contador = 0
+                for actorGraph in actoresGrafica:
+                    grafico.node("nodoActor" + str(contador), str(actorGraph), shape="box", style='filled', fillcolor='#A0B3F2')
+                    contador = contador + 1
+                peliculasGrafica = miPila.retornarPeliculas()
+                contador = 0
+                for peliculaGraph in peliculasGrafica:
+                    origen = "origen" + str(contador)
+                    grafico.node("nodoPelicula" + str(contador), "<" +
+                                "<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>" +
+                                  "<TR>" +
+                                    "<TD COLSPAN='2' bgcolor='#A0E9F2' PORT='" + origen + "'>" + str(peliculaGraph.obtenerNombre()) + "</TD>" +
+                                  "</TR>" +
+                                  "<TR>" +
+                                    "<TD>" + str(peliculaGraph.obtenerAnio()) + "</TD>" +
+                                    "<TD>" + str(peliculaGraph.obtenerGenero()) + "</TD>" +
+                                  "</TR>" +
+                                "</TABLE>>", shape="none")
+                    for actorPeliGraph in peliculaGraph.obtenerActores():
+                        for actorGuardadoGraph in actoresGrafica:
+                            if actorGuardadoGraph == actorPeliGraph:
+                                grafico.edge("nodoPelicula" + str(peliculasGrafica.index(peliculaGraph)) + ":origen" + str(peliculasGrafica.index(peliculaGraph)), "nodoActor" + str(actoresGrafica.index(actorGuardadoGraph)))
+                    contador = contador + 1
+                print(grafico.source)
+
+                """
+                file = open('graphviz.dot', 'w')
+                file.write(grafico.source)
+                file.close()
+                grafico.render(directory='grafico').replace('\\', '/')
+                graphviz.render('dot', 'png', 'graphviz.dot')
+                """
+            else:
+                print("No hay películas cargadas")
         elif opcionMenuPrincipal == 5:
             print("\n--- Salir ---"
                   "\nSaliendo del programa...")
