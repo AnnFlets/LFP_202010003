@@ -31,4 +31,3 @@ class Pila:
         return actores
     def tamanio(self):
         return len(self.peliculas)
-    
