@@ -170,20 +170,15 @@ while(menuPrincipal):
             if miPila.tamanio() != 0:
                 file = open("grafica.dot", "w")
                 file.write("digraph {\n")
-                file.write("rankdir = TB\n")
-                nodosEntrePeliculas = ""
-                nodosEntreActores = ""
-                for p in range(miPila.tamanio() - 1):
-                    nodosEntrePeliculas += "nodoPelicula" + str(p) + " -> " + "nodoPelicula" + str(p+1) + " [style=invis]\n"
-                for a in range(len(miPila.devolverActoresPeliculas()) - 1):
-                    nodosEntreActores += "nodoActor" + str(a) + " -> " + "nodoActor" + str(a+1) + " [style=invis]\n"
-                file.write(nodosEntrePeliculas)
-                file.write(nodosEntreActores)
+                file.write("rankdir = LR\n")
                 actoresGrafica = miPila.devolverActoresPeliculas()
                 contador = 0
                 nodosActores = ""
                 for actorGraph in actoresGrafica:
-                    nodosActores += "nodoActor" + str(contador) + "[label=\"" + str(actorGraph) + "\" fillcolor=\"#A0B3F2\" shape=box style=filled width=3]\n"
+                    nodosActores += str("nodoActor" + str(contador) +
+                                        "[label=\"" + str(actorGraph) +
+                                        "\" fillcolor=\"#A0B3F2\" " +
+                                        "shape=box style=filled width=3]\n")
                     contador = contador + 1
                 peliculasGrafica = miPila.retornarPeliculas()
                 contador = 0
@@ -194,7 +189,8 @@ while(menuPrincipal):
                     nodosPeliculas += str("nodoPelicula" + str(contador) + "[label=<"
                     "<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>"
                     "<TR>"
-                    "<TD COLSPAN='2' bgcolor='#A0E9F2' PORT='" + origen + "'>" + str(peliculaGraph.obtenerNombre()) + "</TD>"
+                    "<TD COLSPAN='2' bgcolor='#A0E9F2' PORT='"
+                    + origen + "'>" + str(peliculaGraph.obtenerNombre()) + "</TD>"
                     "</TR>"
                     "<TR>"
                     "<TD>" + str(peliculaGraph.obtenerAnio()) + "</TD>"
@@ -202,12 +198,9 @@ while(menuPrincipal):
                     "</TR>"
                     "</TABLE>> shape=none]\n")
                     for actorPeliGraph in peliculaGraph.obtenerActores():
-                        for actorGuardadoGraph in actoresGrafica:
-                            if actorGuardadoGraph == actorPeliGraph:
-                                edgePeliActor += str("nodoPelicula" + str(peliculasGrafica.index(peliculaGraph)) +
-                                                     ":origen" + str(peliculasGrafica.index(peliculaGraph)) + " -> " +
-                                                     "nodoActor" + str(actoresGrafica.index(actorGuardadoGraph)) +
-                                                     "[constraint = false]\n")
+                        edgePeliActor += str("nodoPelicula" + str(peliculasGrafica.index(peliculaGraph)) +
+                                             ":origen" + str(peliculasGrafica.index(peliculaGraph)) + " -> " +
+                                             "nodoActor" + str(actoresGrafica.index(actorPeliGraph)) + "\n")
                     contador = contador + 1
                 file.write(nodosPeliculas)
                 file.write(nodosActores)

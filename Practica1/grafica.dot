@@ -1,20 +1,5 @@
 digraph {
-rankdir = TB
-nodoPelicula0 -> nodoPelicula1 [style=invis]
-nodoPelicula1 -> nodoPelicula2 [style=invis]
-nodoPelicula2 -> nodoPelicula3 [style=invis]
-nodoPelicula3 -> nodoPelicula4 [style=invis]
-nodoPelicula4 -> nodoPelicula5 [style=invis]
-nodoPelicula5 -> nodoPelicula6 [style=invis]
-nodoActor0 -> nodoActor1 [style=invis]
-nodoActor1 -> nodoActor2 [style=invis]
-nodoActor2 -> nodoActor3 [style=invis]
-nodoActor3 -> nodoActor4 [style=invis]
-nodoActor4 -> nodoActor5 [style=invis]
-nodoActor5 -> nodoActor6 [style=invis]
-nodoActor6 -> nodoActor7 [style=invis]
-nodoActor7 -> nodoActor8 [style=invis]
-nodoActor8 -> nodoActor9 [style=invis]
+rankdir = LR
 nodoPelicula0[label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD COLSPAN='2' bgcolor='#A0E9F2' PORT='origen0'>Spiderman</TD></TR><TR><TD>2002</TD><TD>Accion</TD></TR></TABLE>> shape=none]
 nodoPelicula1[label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD COLSPAN='2' bgcolor='#A0E9F2' PORT='origen1'>The Amazing Spiderman</TD></TR><TR><TD>2012</TD><TD>Accion</TD></TR></TABLE>> shape=none]
 nodoPelicula2[label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD COLSPAN='2' bgcolor='#A0E9F2' PORT='origen2'>Spiderman Homecoming</TD></TR><TR><TD>2017</TD><TD>Accion</TD></TR></TABLE>> shape=none]
@@ -32,20 +17,20 @@ nodoActor6[label="Zendaya" fillcolor="#A0B3F2" shape=box style=filled width=3]
 nodoActor7[label="Robert Downey Jr" fillcolor="#A0B3F2" shape=box style=filled width=3]
 nodoActor8[label="Chris Evans" fillcolor="#A0B3F2" shape=box style=filled width=3]
 nodoActor9[label="Chris Hemsworth" fillcolor="#A0B3F2" shape=box style=filled width=3]
-nodoPelicula0:origen0 -> nodoActor0[constraint = false]
-nodoPelicula0:origen0 -> nodoActor1[constraint = false]
-nodoPelicula0:origen0 -> nodoActor2[constraint = false]
-nodoPelicula1:origen1 -> nodoActor3[constraint = false]
-nodoPelicula1:origen1 -> nodoActor4[constraint = false]
-nodoPelicula2:origen2 -> nodoActor5[constraint = false]
-nodoPelicula2:origen2 -> nodoActor6[constraint = false]
-nodoPelicula3:origen3 -> nodoActor7[constraint = false]
-nodoPelicula3:origen3 -> nodoActor5[constraint = false]
-nodoPelicula4:origen4 -> nodoActor7[constraint = false]
-nodoPelicula4:origen4 -> nodoActor8[constraint = false]
-nodoPelicula4:origen4 -> nodoActor9[constraint = false]
-nodoPelicula5:origen5 -> nodoActor3[constraint = false]
-nodoPelicula5:origen5 -> nodoActor4[constraint = false]
-nodoPelicula6:origen6 -> nodoActor3[constraint = false]
-nodoPelicula6:origen6 -> nodoActor4[constraint = false]
+nodoPelicula0:origen0 -> nodoActor0
+nodoPelicula0:origen0 -> nodoActor1
+nodoPelicula0:origen0 -> nodoActor2
+nodoPelicula1:origen1 -> nodoActor3
+nodoPelicula1:origen1 -> nodoActor4
+nodoPelicula2:origen2 -> nodoActor5
+nodoPelicula2:origen2 -> nodoActor6
+nodoPelicula3:origen3 -> nodoActor7
+nodoPelicula3:origen3 -> nodoActor5
+nodoPelicula4:origen4 -> nodoActor7
+nodoPelicula4:origen4 -> nodoActor8
+nodoPelicula4:origen4 -> nodoActor9
+nodoPelicula5:origen5 -> nodoActor3
+nodoPelicula5:origen5 -> nodoActor4
+nodoPelicula6:origen6 -> nodoActor3
+nodoPelicula6:origen6 -> nodoActor4
 }
